@@ -51,7 +51,7 @@ function calculate() {
   }
 
   if (ceiling.checked) {
-    totalPrice *= parseFloat(ceiling.value);
+    totalPrice += parseFloat(ceiling.value) * parseInt(squareInput.value);
   }
 
   if (floor.checked) {
