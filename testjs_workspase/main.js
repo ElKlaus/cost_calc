@@ -1,30 +1,38 @@
-const binarySearch = (list, item) => {
-  let low = 0;
-  let high = list.length - 1;
+// for (var i = 0; i < 10; i++) {
+//   setTimeout(function () {
+//     console.log(i);
+//   }, 0)
+// }
 
-  while (low <= high) {
-    let mid = (low + high);
-    let guess = list[mid];
 
-    if ( guess === item) {
-      return mid;
-    } else if (guess > item) {
-      high = mid - 1;
-    } else {
-      low = mid + 1
-    }
 
-    console.log(mid, 'adfa');
-  };
+// const binarySearch = (list, item) => {
+//   let low = 0;
+//   let high = list.length - 1;
+
+//   while (low <= high) {
+//     let mid = (low + high);
+//     let guess = list[mid];
+
+//     if ( guess === item) {
+//       return mid;
+//     } else if (guess > item) {
+//       high = mid - 1;
+//     } else {
+//       low = mid + 1
+//     }
+
+//     console.log(mid, 'adfa');
+//   };
 
   
-};
+// };
 
 
-const someArr = [1, 3, 5, 7, 9];
+// const someArr = [1, 3, 5, 7, 9];
 
 
-binarySearch(someArr, 9);
+// binarySearch(someArr, 9);
 
 // const user = { name: 'Vasya', married: true, age: 25};
 // const name = 'age';
