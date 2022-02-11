@@ -1,3 +1,49 @@
+const course = {
+  name: 'JS: React',
+  slug: 'js-react',
+};
+
+const entiries = Object.entries(course);
+
+
+
+
+// @ts-check
+/* eslint no-restricted-syntax: ["off", "ForOfStatement"] */
+
+// BEGIN (write your solution here)
+// const getVal = (objArg, properties) => {
+//   console.log('Функция запустилась ', objArg, properties);
+//   let resVal;
+
+//   for (const item of properties) {
+//     const checkItem = Object.prototype.hasOwnProperty.call(objArg, item);
+
+//     console.log('Результат проверки на наличие: ' + checkItem);
+
+//     if (checkItem && typeof objArg[item] === 'object') {
+//       console.log('RecursiAAAAA', objArg, properties, ' Свойство: ' + item + ' Значение: ' + objArg[item]/**/);
+//       properties.shift();
+//       getVal(objArg[item], properties);
+//     } else if (checkItem && typeof item !== 'object') {
+//       // console.log(item, objArg[item]);
+//       resVal = objArg[item];
+//       console.log('Вернулось значение свойства: ' + objArg[item]);
+//     } else {
+//       resVal = null;
+//     }
+
+//     console.log(resVal);
+
+
+//   }
+
+//     return resVal;
+// };
+
+// export default getVal;
+// END
+
 // for (var i = 0; i < 10; i++) {
 //   setTimeout(function () {
 //     console.log(i);
