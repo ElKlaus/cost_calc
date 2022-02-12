@@ -1,9 +1,36 @@
-const course = {
-  name: 'JS: React',
-  slug: 'js-react',
+const getVal = (objArg, properties) => {
+  // console.log('Функция запустилась ', objArg, properties);
+  const propLength = properties.length;
+
+  for (let i = 0; i < propLength; i++) {
+    const itemProp = properties[i];
+    const checkExist = Object.prototype.hasOwnProperty.call(objArg, itemProp);
+  
+    console.log(checkExist, itemProp);
+
+    if (checkExist && i === (propLength - 1)) {
+      console.log('Hello from first if', objArg[itemProp]);
+      return objArg[itemProp];
+    } else if (typeof objArg[itemProp] === 'object') {
+      console.log('Recursia!!!!!', objArg[itemProp]);
+
+      properties.shift();
+      getVal(objArg[itemProp], properties);
+    } else return null;
+
+    
+  }
+
 };
 
-const entiries = Object.entries(course);
+export default getVal;
+
+// const course = {
+//   name: 'JS: React',
+//   slug: 'js-react',
+// };
+
+// const entiries = Object.entries(course);
 
 
 
