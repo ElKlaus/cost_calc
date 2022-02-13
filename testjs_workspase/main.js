@@ -1,29 +1,102 @@
-const getVal = (objArg, properties) => {
-  // console.log('Функция запустилась ', objArg, properties);
-  const propLength = properties.length;
+/*
+// BEGIN (write your solution here)
+const cloneDeep = (data) => {
+  const resObj = {};
+  const entries = Object.entries(data);
+  console.log(entries);
 
-  for (let i = 0; i < propLength; i++) {
-    const itemProp = properties[i];
-    const checkExist = Object.prototype.hasOwnProperty.call(objArg, itemProp);
-  
-    console.log(checkExist, itemProp);
-
-    if (checkExist && i === (propLength - 1)) {
-      console.log('Hello from first if', objArg[itemProp]);
-      return objArg[itemProp];
-    } else if (typeof objArg[itemProp] === 'object') {
-      console.log('Recursia!!!!!', objArg[itemProp]);
-
-      properties.shift();
-      getVal(objArg[itemProp], properties);
-    } else return null;
-
-    
+  for (const [key, value] of entries) {
+    if (!isObject(value)) {
+      resObj[key] = value;
+      console.log('Iteration / ', value + ': ' + isObject(value));
+    } else if ((isObject(value))) {
+      console.log('Recursion / ', value + ': ' + isObject(value));
+      resObj[key] = Object.assign({}, value);
+      cloneDeep(value);
+    }
   }
 
+  // console.log(resObj.key2.innerKey === data.key2.innerKey);
+  return resObj;
 };
 
+export default cloneDeep;
+
+
+*/
+
+[
+  [ 'key', 'value' ],
+  [ 'key2', { key: 'innerValue', innerKey: [Object] } ]
+]
+
+
+
+const data = {
+  key: 'value',
+  key2: {
+    key: 'innerValue',
+    innerKey: {
+      anotherKey: 'anotherValue',
+    },
+  },
+};
+
+const copyData = _.cloneDeep(data);
+
+const expResult = (data.key2.innerKey === copyData.key2.innerKey);
+
+console.log(expResult);
+/*
+const getVal = (objArg, properties) => {
+  const propLength = properties.length;
+  const itemProp = properties[0];
+  const checkExist = Object.prototype.hasOwnProperty.call(objArg, itemProp);
+  let result;
+ 
+  if (checkExist && propLength === 1) {
+    result = objArg[itemProp];
+  } else if (typeof objArg[itemProp] === 'object') {
+    properties.shift();
+    return getVal(objArg[itemProp], properties, result);
+  } else {
+    result = null;
+  }
+ 
+  return result;
+};
+ 
 export default getVal;
+*/
+
+
+
+// const getVal = (objArg, properties) => {
+//   // console.log('Функция запустилась ', objArg, properties);
+//   const propLength = properties.length;
+
+//   for (let i = 0; i < propLength; i++) {
+//     const itemProp = properties[i];
+//     const checkExist = Object.prototype.hasOwnProperty.call(objArg, itemProp);
+  
+//     console.log(checkExist, itemProp);
+
+//     if (checkExist && i === (propLength - 1)) {
+//       console.log('Hello from first if', objArg[itemProp]);
+//       return objArg[itemProp];
+//     } else if (typeof objArg[itemProp] === 'object') {
+//       console.log('Recursia!!!!!', objArg[itemProp]);
+
+//       properties.shift();
+//       getVal(objArg[itemProp], properties);
+//     } else return null;
+
+    
+//   }
+
+// };
+
+// export default getVal;
 
 // const course = {
 //   name: 'JS: React',
