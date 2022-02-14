@@ -1,34 +1,46 @@
+const user = { name: 'Arya', date: '11.11.11'};
+const {name, date: createdAd, ...rest } = user;
+
+console.log(user);
+
+
+
+// const makeObj = (name, data) => {
+//   let resObj = {};
+
+//   resObj.name = name;
+//   resObj.state = 'moderating';
+//   resObj.createdAd = Date.now();
+
+//   const newObj = {...resObj, ...data};
+
+
+//   return newObj;
+// };
+
+
+// const someObj = { website: 'hexlet.io', state: 'published' };
+
+// const newObj = makeObj('Fedya', someObj);
+
+
 /*
-// BEGIN (write your solution here)
 const cloneDeep = (data) => {
   const resObj = {};
   const entries = Object.entries(data);
-  console.log(entries);
 
   for (const [key, value] of entries) {
     if (!isObject(value)) {
       resObj[key] = value;
-      console.log('Iteration / ', value + ': ' + isObject(value));
-    } else if ((isObject(value))) {
-      console.log('Recursion / ', value + ': ' + isObject(value));
-      resObj[key] = Object.assign({}, value);
-      cloneDeep(value);
+    } else {
+      resObj[key] = cloneDeep(value);
     }
   }
 
-  // console.log(resObj.key2.innerKey === data.key2.innerKey);
   return resObj;
 };
 
 export default cloneDeep;
-
-
-*/
-
-[
-  [ 'key', 'value' ],
-  [ 'key2', { key: 'innerValue', innerKey: [Object] } ]
-]
 
 
 
@@ -47,6 +59,9 @@ const copyData = _.cloneDeep(data);
 const expResult = (data.key2.innerKey === copyData.key2.innerKey);
 
 console.log(expResult);
+ */
+
+
 /*
 const getVal = (objArg, properties) => {
   const propLength = properties.length;
