@@ -1,10 +1,11 @@
-const user = { name: 'Arya', date: '11.11.11'};
-const {name, date: createdAd, ...rest } = user;
+const user = [];
 
-console.log(user);
+// user[153]
+
+const index = 153;
 
 
-
+console.log(user[index]);
 // const makeObj = (name, data) => {
 //   let resObj = {};
 
