@@ -1,30 +1,23 @@
-/*
-let a = 5;
-let b = 10;
-
-function fn(strings, ...values) {
-  console.log(strings[0]);
-  console.log(strings[1]);
-  console.log(values[0]);
-  console.log(values[1]);
-}
-
-fn`sum: ${a + b}division: ${ b / a}`;
-*/
-const city = "Самара";
-document.write(city.charCodeAt(2));
-
 const getValue = (defObj, data) => {
   let result;
+
+  let current = defObj;
+
+    // console.log(defObj);
 
   for (const item of data) {
 
     console.log(item);
+    if((typeof current[item] === 'object' && Object.hasOwn(current, item)) ) {
+      current = current[item];
+    } else {
+      result = current[item] ? current[item] : null;
+    }
 
-    result = (typeof defObj[item] === 'object') ? getValue(defObj[item], data) : defObj[item];
-
-    
+       
   }
+
+  console.log(result);
 
   return result;
 }
@@ -42,4 +35,4 @@ const someObj = {
   }
 };
 
-// console.log(getValue(someObj, ['three', '2', 'bizz']));
+getValue(someObj, ['three1', '2', 'bizz']);
