@@ -13,8 +13,6 @@ const getValue = (defObj, data) => {
     } else {
       result = current[item] ? current[item] : null;
     }
-
-       
   }
 
   console.log(result);
