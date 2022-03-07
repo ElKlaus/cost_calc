@@ -1,4 +1,4 @@
-import { strict as assert } from 'assert';
+import assert from 'power-assert';
 import capitalize from '../src/capitalize.js';
 
 if (capitalize('hello') !== 'Hello') {
@@ -12,7 +12,7 @@ if (capitalize('') !== '') {
 assert(capitalize('') === '', 'Функция работат неверно!');
 assert(capitalize('hello') === 'Hello');
 
-assert.equal(capitalize(''), '');
+assert.equal(capitalize(''), '123');
 
 
 console.log('Все тесты пройдены!');
