@@ -1,6 +1,6 @@
 // import pkg from "@jest/globals";
 import reverse from "../learn_tdd/src/reverse.js";
-import {test} from '@jest/globals';
+import { test } from '@jest/globals';
 
 // const { expect } = pkg;
 

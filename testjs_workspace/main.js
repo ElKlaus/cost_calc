@@ -1,15 +1,13 @@
+// const { property } = require("lodash");
+
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
     if (typeof item === 'object') {
-
-
-      console.log(item);
       return deepClone(obj_one, obj_two[item]);
     } else {
       obj_one[item] = obj_two[item];
     }
   }
-  console.log(obj_one);
 
   return obj_one;
 };
@@ -41,9 +39,24 @@ const carsObj = {
     last: '1967-2002',
     present: '2010',
   },
+  hasWings: false,
 };
 
-const newObj = deepClone({}, carsObj);
+const getValue = (data, ...property) => {
+  let current = data; 
+  let res;
 
-console.log('newObj.model_years === carsObj.model_years'.split(' '));
+  for (const item of property) {
+    const hasProperty = current.hasOwnProperty(item);
 
+    if(!hasProperty) return null;
+
+    if (current[item] && typeof current[item] === 'object') {
+      current = current[item];
+    }
+
+    res = current[item];
+  }
+  console.log(res);
+  return res
+};
