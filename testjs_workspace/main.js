@@ -60,3 +60,23 @@ const getValue = (data, ...property) => {
   console.log(res);
   return res
 };
+
+
+// @ts-check
+
+import chunk from 'lodash/chunk.js';
+
+// BEGIN (write your solution here)
+const ipToInt = (ipInt) => {
+  // const strIpArr = strIp.split('.');
+  // let res = '';
+  return ipInt.split('.').reduce(function (ipInt, octet) { return (ipInt << 8) + parseInt(octet, 10) }, 0) >>> 0;
+};
+
+const intToIp = (intIP) => {
+  // const strIpArr = intIp.padStart(10, '0');
+  return (intIP >>> 24) + '.' + (intIP >> 16 & 255) + '.' + (intIP >> 8 & 255) + '.' + (intIP & 255);
+}
+
+export { ipToInt, intToIp };
+// END
