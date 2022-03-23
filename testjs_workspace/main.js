@@ -1,4 +1,38 @@
 // const { property } = require("lodash");
+// const {
+//   mkfile, mkdir, isDirectory, isFile, map,
+// } = require('@hexlet/immutable-fs-trees');
+
+let arrForSearch = [];
+
+for (let i = 1; i != 100; i++) {
+  arrForSearch.push(i);
+}
+
+
+const binarySearch = (arr, i) => {
+  var mid = Math.floor(arr.length / 2);
+  console.log(arr[mid], i);
+
+  if (arr[mid] === i) {
+      console.log('match', arr[mid], i);
+      return 'arr[mid]';
+  } else if (arr[mid] < i && arr.length > 1) {
+      console.log('mid lower', arr[mid], i);
+      binarySearch(arr.splice(mid, Number.MAX_VALUE), i);
+  } else if (arr[mid] > i && arr.length > 1) {
+      console.log('mid higher', arr[mid], i);
+      binarySearch(arr.splice(0, mid), i);
+  } else {
+      console.log('not here', i);
+      return -1;
+  }
+}
+
+const result = binarySearch(arrForSearch, 79);
+console.log(result);
+
+
 
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
@@ -61,22 +95,44 @@ const getValue = (data, ...property) => {
   return res
 };
 
+/* ============ */
+let indexes = [];
+const someArr = ['a', 'b', 'a', 'c', 'a', 'd'];
+const someEl = 'a';
+let idx = someArr.indexOf(someEl);
 
-// @ts-check
+while (idx != -1) {
+  indexes.push(idx);
 
-import chunk from 'lodash/chunk.js';
+  idx = someArr.indexOf(someEl, idx + 1);
+}
+/* ============ */
 
-// BEGIN (write your solution here)
-const ipToInt = (ipInt) => {
-  // const strIpArr = strIp.split('.');
-  // let res = '';
-  return ipInt.split('.').reduce(function (ipInt, octet) { return (ipInt << 8) + parseInt(octet, 10) }, 0) >>> 0;
+
+let a = 5;
+let b = 10;
+
+function fn(strings, ...values) {
+  console.log(strings[0]); // 'sum: '
+  console.log(strings[1]); // 'division: '
+  console.log(values[0]);  // 15
+  console.log(values[1]);  // 2
 };
 
-const intToIp = (intIP) => {
-  // const strIpArr = intIp.padStart(10, '0');
-  return (intIP >>> 24) + '.' + (intIP >> 16 & 255) + '.' + (intIP >> 8 & 255) + '.' + (intIP & 255);
-}
+// fn`sum: ${ a + b }division: ${ b / a }`;
 
-export { ipToInt, intToIp };
-// END
+
+const reduce = (collection, func) => {
+  let acc;
+
+  const iter = (collection, acc) => {
+    
+  };
+};
+
+// for (var i = 0; i < 10; i++) {
+//   setTimeout(function () {
+//       console.log(i);
+//   }, 0);
+// }
+
