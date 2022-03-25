@@ -3,6 +3,31 @@
 //   mkfile, mkdir, isDirectory, isFile, map,
 // } = require('@hexlet/immutable-fs-trees');
 
+class Foo {
+  constructor(name) {
+    this.name = name;
+  };
+
+  showName() {
+    console.log(this.name);
+  };
+};
+
+class Bar extends Foo {
+  showName() {
+    console.log('I\'m');
+    super.showName();
+  };
+};
+
+let bar = new Bar('bar');
+
+bar.showName();
+
+
+
+
+
 let arrForSearch = [];
 
 for (let i = 1; i != 100; i++) {
