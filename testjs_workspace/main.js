@@ -3,6 +3,31 @@
 //   mkfile, mkdir, isDirectory, isFile, map,
 // } = require('@hexlet/immutable-fs-trees');
 
+someArr.reduce((acc, el) => acc, {});
+
+const reduce = (coll, func, acc) => {
+  if(isEmpty(coll)) {
+    return acc
+  };
+
+  return reduce(tail(coll), func, func(head(coll), acc));
+};
+
+const objectCreate = (arg) => {
+  if (!arg) {return {}};
+
+  function obj() {};
+
+  obj.prototype = arg;
+
+  return new obj;
+};
+
+Object.create = Object.create || objectCreate;
+
+
+
+
 let arrForSearch = [];
 
 for (let i = 1; i != 100; i++) {
