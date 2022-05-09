@@ -3,61 +3,18 @@
 //   mkfile, mkdir, isDirectory, isFile, map,
 // } = require('@hexlet/immutable-fs-trees');
 
-someArr.reduce((acc, el) => acc, {});
-
-const reduce = (coll, func, acc) => {
-  if(isEmpty(coll)) {
-    return acc
-  };
-
-  return reduce(tail(coll), func, func(head(coll), acc));
+const Dog = function (name = 'Sharik', bread = 'bread', weight = '10kg') {
+  return {name, bread, weight};
 };
 
-const objectCreate = (arg) => {
-  if (!arg) {return {}};
 
-  function obj() {};
-
-  obj.prototype = arg;
-
-  return new obj;
-};
-
-Object.create = Object.create || objectCreate;
-
-
-
-
-let arrForSearch = [];
-
-for (let i = 1; i != 100; i++) {
-  arrForSearch.push(i);
+const showDog = {
+  name: 'Pirat',
+  bread: 'new bread',
+  weight: '20kg'
 }
 
-
-const binarySearch = (arr, i) => {
-  var mid = Math.floor(arr.length / 2);
-  console.log(arr[mid], i);
-
-  if (arr[mid] === i) {
-      console.log('match', arr[mid], i);
-      return 'arr[mid]';
-  } else if (arr[mid] < i && arr.length > 1) {
-      console.log('mid lower', arr[mid], i);
-      binarySearch(arr.splice(mid, Number.MAX_VALUE), i);
-  } else if (arr[mid] > i && arr.length > 1) {
-      console.log('mid higher', arr[mid], i);
-      binarySearch(arr.splice(0, mid), i);
-  } else {
-      console.log('not here', i);
-      return -1;
-  }
-}
-
-const result = binarySearch(arrForSearch, 79);
-console.log(result);
-
-
+console.log(Dog.call(showDog, 'name'));
 
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
