@@ -3,6 +3,30 @@
 //   mkfile, mkdir, isDirectory, isFile, map,
 // } = require('@hexlet/immutable-fs-trees');
 
+
+
+const fn = (strings, ...values) => {
+  let str = '';
+
+  for (let i = 0; i < values.length; i ++) {
+    str += strings[i];
+    
+    str += values[i];
+  }
+
+  str += strings[strings.length - 1];
+
+  return str;
+};
+
+let firstArg = 5;
+let secondArg = 10;
+
+let result = fn`sum: ${firstArg + secondArg} division: ${secondArg / firstArg}`;
+
+console.log(result); //sum: 15 division: 2
+
+
 const Dog = function (name = 'Sharik', bread = 'bread', weight = '10kg') {
   return {name, bread, weight};
 };
@@ -94,12 +118,12 @@ while (idx != -1) {
 let a = 5;
 let b = 10;
 
-function fn(strings, ...values) {
-  console.log(strings[0]); // 'sum: '
-  console.log(strings[1]); // 'division: '
-  console.log(values[0]);  // 15
-  console.log(values[1]);  // 2
-};
+// function fn(strings, ...values) {
+//   console.log(strings[0]); // 'sum: '
+//   console.log(strings[1]); // 'division: '
+//   console.log(values[0]);  // 15
+//   console.log(values[1]);  // 2
+// };
 
 // fn`sum: ${ a + b }division: ${ b / a }`;
 
