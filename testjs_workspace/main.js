@@ -3,6 +3,19 @@
 //   mkfile, mkdir, isDirectory, isFile, map,
 // } = require('@hexlet/immutable-fs-trees');
 
+let delay = 5000;
+
+let timerId = setTimeout(function() {
+  // send query
+
+  if (/*query error*/) {
+    //add interval delay
+
+    delay *= 2;
+  }
+
+  timerId = setTimeout(request, delay);
+}, delay);
 
 
 const fn = (strings, ...values) => {
