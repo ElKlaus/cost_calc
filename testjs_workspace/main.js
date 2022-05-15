@@ -1,21 +1,51 @@
-// const { property } = require("lodash");
-// const {
-//   mkfile, mkdir, isDirectory, isFile, map,
-// } = require('@hexlet/immutable-fs-trees');
 
-let delay = 5000;
 
-let timerId = setTimeout(function() {
-  // send query
 
-  if (/*query error*/) {
-    //add interval delay
 
-    delay *= 2;
+const cloneDeep = (data) => {
+  const res = {};
+  const entries = Object.entries(data);
+
+  for (const [key, value] of entries) {
+    res[key] = isObject(value) ? cloneDeep(value) : value;
   }
 
-  timerId = setTimeout(request, delay);
-}, delay);
+  return res;
+}
+
+const greeting = (name = 'Mike') => {
+  alert(`Hi, ${name}!`);
+};
+
+function func1() {
+  let funcExample = function () {
+    return 'one';
+  };
+
+  return funcExample();
+
+  funcExample = function() {
+    return 'two';
+  };
+};
+
+const getValue1 = (data, keys) => {
+  let current = data;
+  // const entries = Array.entries(data);
+
+  for (const key of keys) {
+    // const hasOwnProperty = ;
+
+    if(!Object.hasOwn(current, key)) {
+      return null;
+    }
+
+    current = current[key];
+  }
+
+  return current;
+};
+
 
 
 const fn = (strings, ...values) => {
@@ -37,7 +67,6 @@ let secondArg = 10;
 
 let result = fn`sum: ${firstArg + secondArg} division: ${secondArg / firstArg}`;
 
-console.log(result); //sum: 15 division: 2
 
 
 const Dog = function (name = 'Sharik', bread = 'bread', weight = '10kg') {
@@ -51,7 +80,7 @@ const showDog = {
   weight: '20kg'
 }
 
-console.log(Dog.call(showDog, 'name'));
+
 
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
@@ -94,6 +123,8 @@ const carsObj = {
   },
   hasWings: false,
 };
+
+const keysForTest = ['platform', 'f_body', 'years'];
 
 const getValue = (data, ...property) => {
   let current = data; 
