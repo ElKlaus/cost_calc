@@ -1,3 +1,11 @@
+const reduceTags = (coll, func, acc) => {
+  if(isEmpty(coll)) {
+    return acc;
+  }
+
+  return reduceTags(tail(coll), func, func(head(coll), acc));
+};
+
 const binarySearch = (list, item) => {
   let low = 0;
   let high = list.length - 1;
@@ -47,7 +55,7 @@ function func1() {
 
   return funcExample();
 
-  funcExample = function() {
+  function() {
     return 'two';
   };
 };
