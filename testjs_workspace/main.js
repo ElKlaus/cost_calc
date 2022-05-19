@@ -1,3 +1,24 @@
+
+const quotes = (coll) => {
+  const checkItem = (item) => isQuote(item);
+
+  return coll.filter(checkItem(el)).map(getQuote(el));
+};
+
+try {
+  setTimeout(function() {
+    noSuchVariable;
+  }, 1000);
+} catch (e) {
+  alert("Ahtung!!");
+}
+
+const makeTimer = (doneMessage, n) => {
+  setTimeout(function() {
+    alert(doneMessage);
+  }, n);
+}
+
 const changeOwner = (tree, owner) => {
   const name = getName(tree);
   const newMeta = _.cloneDeep(getMeta(tree));
@@ -66,17 +87,17 @@ const greeting = (name = 'Mike') => {
   alert(`Hi, ${name}!`);
 };
 
-function func1() {
-  let funcExample = function () {
-    return 'one';
-  };
+// function func1() {
+//   let funcExample = function () {
+//     return 'one';
+//   };
 
-  return funcExample();
+//   return funcExample();
 
-  function() {
-    return 'two';
-  };
-};
+//   function() {
+//     return 'two';
+//   };
+// };
 
 const getValue1 = (data, keys) => {
   let current = data;
