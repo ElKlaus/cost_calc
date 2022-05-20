@@ -1,3 +1,28 @@
+const getValue2 = (data, keys) => {
+  let current = data;
+
+  for (const key of keys) {
+    current = current.hasOwnProperty(key) ? current[key] : null;
+  }
+
+  return current;
+};
+
+const filter = (coll, func) => {
+  const iter = (items, acc) => {
+    if (isEmpty(items)) {
+      return reverse(acc);
+    }
+
+    const currentItem = head(items);
+    const newAcc = func(currentItem) ? acc.push(currentItem) : acc;
+
+    return iter(tail(items), newAcc);
+  }
+
+  return iter(coll, []);
+}
+
 
 const quotes = (coll) => {
   const checkItem = (item) => isQuote(item);
@@ -195,6 +220,8 @@ const carsObj = {
 };
 
 const keysForTest = ['platform', 'f_body', 'years'];
+
+// console.log(getValue2(carsObj, keysForTest));
 
 const getValue = (data, ...property) => {
   let current = data; 
