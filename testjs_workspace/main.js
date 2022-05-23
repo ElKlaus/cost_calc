@@ -1,3 +1,40 @@
+const binarySearch1 = (coll, item) => {
+  let low = 0;
+  let high = coll.length - 1;
+
+  while (low <= high) {
+    let mid = low + high;
+    let guess = coll[mid];
+
+    if (guess === item) {
+      return mid;
+    } else if (guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+  
+  return null;  
+}
+
+const changeOwner1 = (coll, owner) => {
+  const name = getName(tree);
+  const newMeta = _.cloneDeep(getMeta(treee));
+  newMeta.owner = owner;
+
+  if (isFile(tree)) {
+    return mkfile(name, newMeta);
+  }
+
+  const children = getChildren(coll);
+
+  const newChildren = children.map((child) => changeOwner(child, owner));
+  const newTree = mkdir(name, newChildren, newMeta);
+
+  return newTree;
+}
+
 const getValue2 = (data, keys) => {
   let current = data;
 
@@ -30,13 +67,13 @@ const quotes = (coll) => {
   return coll.filter(checkItem(el)).map(getQuote(el));
 };
 
-try {
-  setTimeout(function() {
-    noSuchVariable;
-  }, 1000);
-} catch (e) {
-  alert("Ahtung!!");
-}
+// try {
+//   setTimeout(function() {
+//     noSuchVariable;
+//   }, 1000);
+// } catch (e) {
+//   alert("Ahtung!!");
+// }
 
 const makeTimer = (doneMessage, n) => {
   setTimeout(function() {
@@ -92,7 +129,7 @@ const binarySearch = (list, item) => {
 
 const myList = [1, 3, 5, 7, 9];
 
-const testBin = binarySearch(myList, 3);
+const testBin = binarySearch1(myList, 5);
 
 console.log(testBin);
 
