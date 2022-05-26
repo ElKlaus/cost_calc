@@ -1,3 +1,53 @@
+
+
+const changeOwner2 = (tree, owner) => {
+  const name = getName(tree)
+  const newMeta = _.cloneDeep(getMeta(tree));
+  newMeta.owner = owner;
+
+  if(isFile(tree)) {
+    return newFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+
+  const newChildren = children.map((el) => changeOwner(el, owner));
+  const newTree = mkdir(name, newChildren, newMeta);
+
+  return newTree;
+}
+
+const getValue3 = (data, keys) => {
+  let current = data;
+
+  for (const key of keys) {
+    const checkOwn = Object.prototype.hasOwn(current, key);
+
+    if(!checkOwn) {
+      return null;
+    }
+
+    current = data[key];
+  }
+
+  return current;
+}
+
+const cloneDeep1 = (data) => {
+  const res = {};
+  const entries = Object.entries(data);
+
+  for (const [key, value] of entries) {
+    if (typeof value === 'object') {
+      res[key] = cloneDeep1(value);
+    }
+
+    res[key] = value;
+  }
+
+  return res;
+};
+
 const binarySearch1 = (coll, item) => {
   let low = 0;
   let high = coll.length - 1;
@@ -14,8 +64,8 @@ const binarySearch1 = (coll, item) => {
       low = mid + 1;
     }
   }
-  
-  return null;  
+
+  return null;
 }
 
 const changeOwner1 = (coll, owner) => {
@@ -256,6 +306,8 @@ const carsObj = {
   hasWings: false,
 };
 
+console.log(cloneDeep1(carsObj));
+
 const keysForTest = ['platform', 'f_body', 'years'];
 
 // console.log(getValue2(carsObj, keysForTest));
@@ -313,10 +365,3 @@ const reduce = (collection, func) => {
     
   };
 };
-
-// for (var i = 0; i < 10; i++) {
-//   setTimeout(function () {
-//       console.log(i);
-//   }, 0);
-// }
-
