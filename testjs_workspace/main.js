@@ -1,4 +1,57 @@
+//queueMicrotask(task);
+//promises
+const changeOwner3 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = getMeta(tree);
+  newMeta.owner = owner;
 
+  if(isFile(tree)) {
+    return makeFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+
+  const newChildren = children.map((child) => changeOwner3(child, owner));
+
+  return makeDir(name, newChildren, newMeta);
+}
+
+const factorial = (n) => {
+  const iter = (current, acc) => {
+    if(current === 0) {
+      return acc;
+    }
+    return iter(current - 1, acc * current)
+  }
+
+  return iter(n, 1);
+};
+
+console.log(factorial(0));
+
+const objecCreate = (arg) => {
+  if (!arg) {
+    return {};
+  }
+
+  const res = {}
+
+}
+
+const objToArr = (data) => {
+  const entries = Object.entries(data);
+  const result = [];
+
+  for (const [key, value] of entries) {
+    if(typeof value === 'object') {
+      result.push([key + '+++++', objToArr(value)]);
+    } else {
+      result.push([key + '!!!!', value]);
+    }    
+  }
+
+  return result;
+};
 
 const changeOwner2 = (tree, owner) => {
   const name = getName(tree)
@@ -181,8 +234,6 @@ const myList = [1, 3, 5, 7, 9];
 
 const testBin = binarySearch1(myList, 5);
 
-console.log(testBin);
-
 
 const cloneDeep = (data) => {
   const res = {};
@@ -306,11 +357,9 @@ const carsObj = {
   hasWings: false,
 };
 
-console.log(cloneDeep1(carsObj));
-
 const keysForTest = ['platform', 'f_body', 'years'];
 
-// console.log(getValue2(carsObj, keysForTest));
+console.log(objToArr(carsObj));
 
 const getValue = (data, ...property) => {
   let current = data; 
