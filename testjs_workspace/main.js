@@ -1,5 +1,27 @@
 //queueMicrotask(task);
 //promises
+const binarySearch2 = (data, item) => {
+  let low = 0;
+  let high = data.length - 1;
+
+  while(low <= high) {
+    let mid = low + high;
+    let guess = data[mid];
+
+    console.log(guess);
+
+    if (guess === item) {
+      return mid;
+    } else if (guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return null;
+}
+
 const changeOwner3 = (tree, owner) => {
   const name = getName(tree);
   const newMeta = getMeta(tree);
@@ -26,8 +48,6 @@ const factorial = (n) => {
 
   return iter(n, 1);
 };
-
-console.log(factorial(0));
 
 const objecCreate = (arg) => {
   if (!arg) {
@@ -230,9 +250,11 @@ const binarySearch = (list, item) => {
   return null;
 };
 
-const myList = [1, 3, 5, 7, 9];
+const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
 
-const testBin = binarySearch1(myList, 5);
+const testBin = binarySearch2(myList.sort(), 5);
+
+console.log(myList.sort(), '\n', testBin);
 
 
 const cloneDeep = (data) => {
@@ -286,7 +308,6 @@ const fn = (strings, ...values) => {
 
   for (let i = 0; i < values.length; i ++) {
     str += strings[i];
-    
     str += values[i];
   }
 
