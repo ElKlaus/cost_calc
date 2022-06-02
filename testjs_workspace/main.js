@@ -1,5 +1,72 @@
-//queueMicrotask(task);
-//promises
+const changeOwner4 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = _.cloneDeep(getMeta(tree));
+  newMeta.owner = owner;
+
+  if(isFile(tree)) {
+    return makeFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+  const newChildren = children.map((el) => changeOwner4(el, owner));
+  const newTree = makeDir(name, newChildren, newMeta);
+
+  return newTree;
+}
+
+const objecCreate1 = (arg) => {
+  if(!arg) {
+    return {};
+  }
+
+  const func = () => {};
+
+  func.prototype = arg;
+
+  return new func;
+}
+
+const getValue4 = (data, keys) => {
+  let current = data;
+
+  for (const key of keys) {
+    const checkExistProp = Object.prototype.hasOwnProperty(current, key);
+
+    if(!checkExistProp) {
+      return null;
+    } else {
+      current = current[key];
+    }
+  }
+
+  return current;
+}
+
+const reduceTags2 = (tree, func, acc) => {
+  if(isEmpty(tree)) {
+    return acc;
+  }
+
+  return reduceTags2(tail(tree), func, func(head(tree), acc));
+}
+
+const emptyTagsCount = (tag, tree) => {
+  const result = tree
+    .filter((el) => getTagName(el) === tag ? true : false)
+    .reduce((acc, el) => {
+      const newAcc = acc;
+
+      if(isEmpty(el)) {
+        newAcc += 1;
+        return newAcc;
+      } else {
+        return newAcc;
+      }
+    }, 0)
+
+    return result;
+}
+
 const binarySearch2 = (data, item) => {
   let low = 0;
   let high = data.length - 1;
@@ -7,8 +74,6 @@ const binarySearch2 = (data, item) => {
   while(low <= high) {
     let mid = low + high;
     let guess = data[mid];
-
-    console.log(guess);
 
     if (guess === item) {
       return mid;
@@ -21,6 +86,12 @@ const binarySearch2 = (data, item) => {
 
   return null;
 }
+
+const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
+
+const testBin = binarySearch2(myList.sort(), 5);
+
+console.log(myList.sort(), '\n', testBin);
 
 const changeOwner3 = (tree, owner) => {
   const name = getName(tree);
@@ -250,12 +321,6 @@ const binarySearch = (list, item) => {
   return null;
 };
 
-const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
-
-const testBin = binarySearch2(myList.sort(), 5);
-
-console.log(myList.sort(), '\n', testBin);
-
 
 const cloneDeep = (data) => {
   const res = {};
@@ -379,8 +444,6 @@ const carsObj = {
 };
 
 const keysForTest = ['platform', 'f_body', 'years'];
-
-console.log(objToArr(carsObj));
 
 const getValue = (data, ...property) => {
   let current = data; 
