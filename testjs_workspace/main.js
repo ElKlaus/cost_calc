@@ -1,3 +1,42 @@
+const changeOwner5 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = _.cloneDeep(getMeta(tree));
+
+  newMeta.owner = owner;
+
+  if (isFile(tree)) {
+    return mkfile(name, newMeta);
+  }
+
+  children = getChildren(tree);
+
+  newChildren = children.map((child) => changeOwner5(child, owner));
+
+  return mkdir(name, newChildren, newMeta);
+};
+
+const customCunst = function(name, breed, height) {
+  this.name = name;
+  this.breed = breed;
+  this.height = height;
+};
+
+const objecCreate2 = (arg) => {
+  if(!arg) {
+    return {};
+  }
+
+  const func = function() {
+    return {};
+  }
+
+  func.prototype = arg;
+
+  return new func;
+}
+
+const bestDog = new customCunst('Taison', 'terier', 55);
+
 const changeOwner4 = (tree, owner) => {
   const name = getName(tree);
   const newMeta = _.cloneDeep(getMeta(tree));
@@ -30,7 +69,7 @@ const getValue4 = (data, keys) => {
   let current = data;
 
   for (const key of keys) {
-    const checkExistProp = Object.prototype.hasOwnProperty(current, key);
+    const checkExistProp = Object.prototype.hasOwnProperty.call(current, key);
 
     if(!checkExistProp) {
       return null;
@@ -400,6 +439,8 @@ const showDog = {
 }
 
 
+
+console.log(objecCreate2(showDog));
 
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
