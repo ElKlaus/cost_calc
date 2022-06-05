@@ -1,6 +1,146 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+this.setState((state, props) => {
+  const { count } = state;
+
+  return { count: count + 1 };
+})
+
+class Counter1 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  handleClick = () => {
+    this.setState({ count: this.state.count + 1 });
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>count: {this.state.count}</button>
+    );
+  }
+}
+
+const mountNode5 = document.getElementById("react-root");
+const root5 = ReactDOM.createRoot(mountNode);
+root.render(<Counter1 />);
+
+
+
+
+class Counter extends React.Component {
+  handleClick = () => {
+    this.setState({ date: new Date() });
+  }
+}
+
+class Clock extends React.Component {
+  handleClick() {
+    this.setState({ date: new Date() });
+  }
+}
+
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props); // всегда обязательно
+    this.state = { date: new Date() };
+  }
+}
+
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  
+  handleClick = () => {
+    this.setState({ date: new Date() });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>It is {this.state.date.toLocaleTimeString()}.</p>
+        <button
+          type="button"
+          onClick={this.handleClick}
+         >
+          refresh
+        </button>
+      </div>
+    );
+  }
+}
+
+const mountNode4 = document.getElementById('react-root');
+const root4 = ReactDOM.createRoot(mountNode);
+root.render(<Clock />);
+
+
+
+
+
+// BEGIN
+export default class ListGroup extends React.Component {
+  render() {
+    const { children } = this.props;
+    return (
+      <ul className="list-group">
+        {React.Children.map(children, (item) => <li className="list-group-item">{item}</li>)}
+      </ul>
+    );
+  }
+}
+// END
+
+
+
+
+React.Children.map(this.props.children, ...)
+
+class ChildrenCounter extends React.Component {
+  render() {
+    const { children } = this.props
+    return <p>Count: {React.Children.count(children)}</p>
+  }
+}
+
+// // Count: 1
+// <ChildrenCounter>
+//   Second!
+// </ChildrenCounter>
+
+// // Count: 2
+// <ChildrenCounter>
+//   <p>First</p>
+//   <ChildComponent />
+// </ChildrenCounter>
+
+// // Count: 2
+// <ChildrenCounter>
+//   {() => <h1>First!</h1>} // будет пропущено, поскольку не является dom-элементом
+//   Second!
+//   <p>Third!</p>
+// </ChildrenCounter>
+
+class List extends React.Component {
+  render() {
+    const { data } = this.props;
+
+    return (
+      <ul>
+        {data.map((item) => <li key={item.id}>{item.name}</li>)}
+      </ul>
+    );
+  }
+}
+
 class TestComp1 extends React.Component {
   render() {
     const CustomClass = {
@@ -9,7 +149,7 @@ class TestComp1 extends React.Component {
     }
 
     return (
-      <div className="CustomClass">
+      <div style="CustomClass">
         <ul style={{ position: 'relative' }}>
           <li></li>
           <li></li>
