@@ -13,7 +13,7 @@ class App extends React.Component {
         method: 'post',
         headers: {
           'Accept': 'application/json',
-          'Content-type': 'application/json'
+          'Content-Type': 'application/json'
         }
       });
 
@@ -40,7 +40,7 @@ class App extends React.Component {
         method: 'post',
         headers: {
           'Accept': 'application/json',
-          'Content-type': 'application/json'
+          'Content-Type': 'application/json'
         }
       });
 
@@ -72,7 +72,11 @@ class App extends React.Component {
           <div className="app">
             <div className="container">
               Welcome {UserStore.userName}
-              <SubmitButton text={'Log out'} disabled={false} onClick={ () => this.doLogout() }/>
+              <SubmitButton
+                text={'Log out'}
+                disabled={false}
+                onClick={ () => this.doLogout() }
+              />
             </div>
           </div>
         )

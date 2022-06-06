@@ -1,4 +1,31 @@
+const changeOwner7 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = getMeta(tree);
 
+  newMeta.owner = owner;
+
+  if (isFile(tree)) {
+    return mkFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+
+  const newChildren = children.map((child) => changeOwner7(child, owner));
+
+  return mkDir(name, newChildren, newMeta);
+}
+
+const objectCreate1 = (arg) => {
+  if (!arg) {
+    return {};
+  }
+
+  const func = function() {};
+
+  func.prototype = arg;
+
+  return new func();
+}
 
 const customCunst1 = (name, breed, weight) => {
   this.name = name;
@@ -13,9 +40,7 @@ const objecCreate3 = (arg) => {
     return {};
   }
 
-  const func = function() {
-    return {};
-  }
+  const func = function() {};
 
   func.prototype = arg;
 

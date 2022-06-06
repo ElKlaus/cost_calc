@@ -1,6 +1,62 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+}
+
+class ListGroup1 extends React.Component {
+  render() {
+    const { children } = this.props;
+    const listRender = React.Children.map((item) => <li key={item.id} className='list-group-item'>{item}</li>);
+
+    return (
+      <ul className='list-group'>
+        {listRender}
+      </ul>
+    )
+  }
+}
+
+class List1 extends React.Component {
+  render() {
+    const { data } = this.props;
+
+    return (
+      <ul>
+        {data.map((item) => <li key={item.id}>{item.name}</li>)}
+      </ul>
+    )
+
+  }
+}
+
+class ChildrenCounter1 extends React.Component {
+  render() {
+    const { children } = this.props;
+
+    return <p>Count: {React.Children.count(children)}</p>
+  }
+}
+
+class Button extends React.Component {
+  render() {
+    const { btnClass } = 'btn';
+
+    if (isPressed) {
+      btnClass += ' btn-pressed';
+    } else if (isHovered) {
+      btnClass += ' btn-over';
+    }
+
+    return <button className='{btnClass}'>{label}</button>
+  }
+}
+
 this.setState((state, props) => {
   const { count } = state;
 
