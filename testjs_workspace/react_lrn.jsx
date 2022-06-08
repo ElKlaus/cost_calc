@@ -1,6 +1,115 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+class Counter3 extends React.Component {
+  constructor(props) {
+    this.state = {
+      count: this.props.count
+    }
+  }
+
+  handleClick = () => {
+    this.setState((state) => ({ count: state.count + 1 }));
+  };
+
+  render() {
+    return <button onClick={this.handleClick}>
+      count: {this.state.count}
+    </button>
+  }
+};
+
+Counter.defaultProps = {
+  count: 0,
+};
+
+const vdom3 = <div>
+  <Counter />
+  <Counter count={5} />
+</div>;
+
+const mountNode33 = document.getElementById('react-root');
+const root33 = ReactDOM.createRoot(mountNode33);
+root33.render(vdom3)
+
+class Counter2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    }
+  }
+
+
+  handleClick() {
+    thic.state((state, props) => {
+      const { count } = state;
+
+      return { count: count + 1 };
+    })
+  }
+
+  render() {
+    return (
+      <button onClick={handleClick}>Count: {this.state.count}</button>
+    )
+  }
+}
+
+const 
+
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  
+  handleClick = () => {
+    this.setState({ date: new Date() });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>It is {this.state.date.toLocaleTimeString()}.</p>
+        <button
+          type="button"
+          onClick={this.handleClick}
+         >
+          refresh
+        </button>
+      </div>
+    );
+  }
+}
+
+const mountNode = document.getElementById('react-root');
+const root = ReactDOM.createRoot(mountNode);
+root.render(<Clock />);
+
+
+
+
+class List6 extends React.Component {
+  render() {
+    const { data } = this.props;
+
+    return (
+      <ul>
+        {data.map(item => <li>{item.name}</li>)}
+      </ul>
+    );
+  }
+}
+
+const items6 = [
+  { name: 'first' },
+  { name: 'second' }
+];
+
+const mountNode3 = document.getElementById('react-root');
+const root6 = ReactDOM.createRoot(mountNode);
+root6.render(<List6 data={items6}/>) 
 
 class Clock extends React.Component {
   constructor(props) {

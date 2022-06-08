@@ -1,6 +1,85 @@
+// import { isEmpty, reverse, tail } from "lodash";
+/**
+ * queueMicrotask
+ * 
+ */
+const regV = /\d{6}/g;
+
+console.log( 'asdfasdfd 123567 sdfadfasdf 999999 asfdasdf'.match(regV));
+
+const binarySearch4 = (coll, item) => {
+  let low = 0;
+  let high = coll.length - 1;
+
+  while (low <= high) {
+    let mid = low + high;
+    let guess = coll[mid];
+
+    if (guess === item) {
+      return mid;
+    } else if (guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return null;
+}
+
+const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
+
+const testBin = binarySearch4(myList.sort(), 5);
+
+// console.log(myList.sort(), '  ', testBin);
+
+const objecCreate4 = (arg) => {
+  if (!arg) {
+    return {};
+  }
+
+  const func = () => {
+    return {};
+  };
+
+  func.prototype = arg;
+
+  return new func;
+};
+
+const filter2 = (coll, func) => {
+  const iter = (items, acc) => {
+    if (isEmpty(items)) {
+      return reverse(acc);
+    }
+    const head = getHead(items);
+    const newAcc = func(head) ? acc.push(head) : acc;
+
+    return iter(tail(items), newAcc);
+  }
+
+  return iter(coll, []);
+}
+
+/**
+ * Возврат длины
+ * возврат первого элемента без удаления
+ * 
+ * проверка на пустоту
+ * вствка в конец
+ * возврат последнего элемента
+ */
+
+
+const someStr = 'loremru hello world';
+
+const strToArr = someStr.split('');
+
+// console.log(strToArr)
+
 const changeOwner7 = (tree, owner) => {
   const name = getName(tree);
-  const newMeta = getMeta(tree);
+  const newMeta = _.cloneDeep(getMeta(tree));
 
   newMeta.owner = owner;
 
@@ -33,7 +112,7 @@ const customCunst1 = (name, breed, weight) => {
   this.weight = weight;
 };
 
-const newDog = new customCunst1('Sharick', 'Mixed', 123);
+// const newDog = new customCunst1('Sharick', 'Mixed', 123);
 
 const objecCreate3 = (arg) => {
   if (!arg) {
@@ -195,11 +274,7 @@ const binarySearch2 = (data, item) => {
   return null;
 }
 
-const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
 
-const testBin = binarySearch2(myList.sort(), 5);
-
-console.log(myList.sort(), '\n', testBin);
 
 const changeOwner3 = (tree, owner) => {
   const name = getName(tree);
@@ -507,9 +582,6 @@ const showDog = {
   weight: '20kg'
 }
 
-
-
-console.log(objecCreate2(showDog));
 
 const deepClone = (obj_one, obj_two) => {
   for (const item in obj_two) {
