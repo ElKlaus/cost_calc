@@ -1,5 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import cn from 'classnames';
+
+
+
+export default class Buttons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: null
+    };
+  }
+
+  selectLeft = () => this.setActive('left');
+  
+  selectRight = () => this.setActive('right');
+
+  setActive = (active) => {
+    this.setState({ active });
+  }
+
+  render() {
+    const { active } = this.state;
+
+    const sharedClasses = {
+      btn: true,
+      'btn-secondary': true,
+    };
+
+    const leftButtonClass = {
+      ...sharedClasses,
+      left: true,
+      active: active === 'left',
+    };
+
+    const rightButtonClass = {
+      ...sharedClasses,
+      right: true,
+      active: active === 'right',
+    };
+
+    return (
+      <div className="btn-gtoup" role="group">
+        <button type='button' onClick={this.selectLeft} className={cn(leftButtonClass)}></button>
+        <button type='button' onClick={this.selectRight} className={cn(rightButtonClass)}></button>
+      </div>
+    )
+  }
+};
 
 class Counter3 extends React.Component {
   constructor(props) {
@@ -56,7 +104,7 @@ class Counter2 extends React.Component {
   }
 }
 
-const 
+
 
 class Clock extends React.Component {
   constructor(props) {
