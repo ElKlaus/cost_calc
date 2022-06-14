@@ -1,11 +1,31 @@
-// import { isEmpty, reverse, tail } from "lodash";
+import { isEmpty, reverse, tail, deepClone } from "lodash";
 /**
  * queueMicrotask
- * 
+ * аппаратный
+ * канальный
+ * сетевой
+ * транспортный
+ * уровень сессий
+ * представлений
+ * приложений
  */
-const regV = /\d{6}/g;
+const changeOwner8 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = _.deepClone(getMeta(tree));
 
-console.log( 'asdfasdfd 123567 sdfadfasdf 999999 asfdasdf'.match(regV));
+  newMeta.owner = owner;
+
+  if (isFile(tree)) {
+    return mkFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+  const newChildren = children.map((child) => changeOwner8(child, owner));
+
+  return mkDir(name, newChildren, newMeta);
+};
+
+const regV = /\d{6}/g;
 
 const binarySearch4 = (coll, item) => {
   let low = 0;

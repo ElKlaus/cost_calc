@@ -2,6 +2,43 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import cn from 'classnames';
 
+class Button1 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 1,
+      primary: false,
+    };
+  }
+
+  onIncrement = () => {
+    this.setState(({ count }) => ({ count: count + 1 }));
+  };
+
+  onChangeClass = () => {
+    this.setState(({ primary }) => ({ primary: !primary }) );
+  };
+
+  render() {
+    const buttonClass = cn([
+      'btn',
+      this.state.primary ? 'btn-brimary' : 'btn-secondary'
+    ]);
+
+    return <div>
+      <button className='"btn btn-secondary m-3' onClick={this.onIncrement}>
+        count: {this.state.count}
+      </button>
+      <button className={buttonClass} onClick={this.onChangeClass}>
+        button
+      </button>
+    </div>
+  }
+}
+
+const mountNode6 = document.getElementById('react-root');
+const root61 = ReactDOM.createRoot(mountNode6);
+root61.render(<Buttons />);
 
 
 export default class Buttons extends React.Component {
