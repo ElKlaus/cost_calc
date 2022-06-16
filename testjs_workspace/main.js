@@ -1,4 +1,4 @@
-import { isEmpty, reverse, tail, deepClone } from "lodash";
+// import { isEmpty, reverse, tail, deepClone } from "lodash";
 /**
  * queueMicrotask
  * аппаратный
@@ -9,6 +9,56 @@ import { isEmpty, reverse, tail, deepClone } from "lodash";
  * представлений
  * приложений
  */
+const quotes1 = (elements) => {
+  const filtered = filter(element => is('blockquote', element), elements);
+  const result = map(value, filtered);
+
+  return result;
+}
+
+const customCunst1 = function(name, breed, weight) {
+  this.name = name;
+  this.bread = breed;
+  this.weight = weight;
+};
+
+const newDog = new customCunst1('Sharick', 'Mixed', 123);
+
+console.log(newDog)
+
+const objecCreate5 = (arg) => {
+  if (!arg) {
+    return {};
+  }
+
+  const fn = function() {
+    return {};
+  };
+
+  fn.prototype = arg;
+
+  return new fn;
+}
+
+const getValue5 = (data, keys) => {
+  let current = data;
+
+  for (const key of keys) {
+    const existVal = Object.hasOwn.call(current, key);
+    
+    if(!existVal) {
+      return null
+    } else {
+      current = current[key];
+    }
+  }
+
+  return current;
+};
+
+
+
+
 const changeOwner8 = (tree, owner) => {
   const name = getName(tree);
   const newMeta = _.deepClone(getMeta(tree));
@@ -126,13 +176,6 @@ const objectCreate1 = (arg) => {
   return new func();
 }
 
-const customCunst1 = (name, breed, weight) => {
-  this.name = name;
-  this.bread = bread;
-  this.weight = weight;
-};
-
-// const newDog = new customCunst1('Sharick', 'Mixed', 123);
 
 const objecCreate3 = (arg) => {
   if (!arg) {
@@ -571,23 +614,23 @@ const getValue1 = (data, keys) => {
 
 
 
-const fn = (strings, ...values) => {
-  let str = '';
+// const fn = (strings, ...values) => {
+//   let str = '';
 
-  for (let i = 0; i < values.length; i ++) {
-    str += strings[i];
-    str += values[i];
-  }
+//   for (let i = 0; i < values.length; i ++) {
+//     str += strings[i];
+//     str += values[i];
+//   }
 
-  str += strings[strings.length - 1];
+//   str += strings[strings.length - 1];
 
-  return str;
-};
+//   return str;
+// };
 
 let firstArg = 5;
 let secondArg = 10;
 
-let result = fn`sum: ${firstArg + secondArg} division: ${secondArg / firstArg}`;
+// let result = fn`sum: ${firstArg + secondArg} division: ${secondArg / firstArg}`;
 
 
 
