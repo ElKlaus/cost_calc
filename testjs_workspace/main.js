@@ -9,6 +9,63 @@
  * представлений
  * приложений
  */
+
+const testAlg1 = (binaryVector) => {
+  let current = 0,
+      best = 0;
+  
+  for (const item of binaryVector) {
+    if (item > 0) {
+      current += 1;
+      best = Math.max(best, current);
+    } else {
+      current = 0;
+    }
+  }
+
+  return best;
+};
+
+console.log(testAlg1([1,1,1,1,1,1]));
+
+const carsObj2 = {
+  model: 'Chevrolet',
+  class: 'Pony car',
+  layout: 'FR layout',
+  platform: {
+    f_body: {
+      years: '1967-2002' 
+    },
+    zeta_platform: '2010-2015',
+    alpha_platform: '2016-present',
+  },
+  model_years: {
+    last: '1967-2002',
+    present: '2010',
+  },
+  hasWings: false,
+};
+
+const cloneDeep2 = (data) => {
+  const entries = Object.entries(data);
+  const result = {};
+
+  for (const [key, value] of entries) {
+    if (typeof value !== 'object') {
+      result[key] = value;
+    } else {
+      result[key] = cloneDeep2(value);
+    }
+  }
+
+  return result;
+};
+
+const someTest = cloneDeep2(carsObj2);
+
+// console.log(someTest)
+
+
 const quotes1 = (elements) => {
   const filtered = filter(element => is('blockquote', element), elements);
   const result = map(value, filtered);
@@ -24,7 +81,7 @@ const customCunst1 = function(name, breed, weight) {
 
 const newDog = new customCunst1('Sharick', 'Mixed', 123);
 
-console.log(newDog)
+// console.log(newDog)
 
 const objecCreate5 = (arg) => {
   if (!arg) {

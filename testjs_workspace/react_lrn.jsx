@@ -2,6 +2,55 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import cn from 'classnames';
 
+class Reservation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGoing: true,
+      numberOfGuests: 2
+    };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    })
+  }
+
+  render() {
+    return (
+      <form action="">
+        <label htmlFor="">
+          Is isGoing
+          <input 
+            name='isGoing'
+            type="checkbox"
+            checked={this.state.isGoing}
+            onChange={this.handleInputChange} />
+        </label>
+        <br />
+        <label htmlFor="">
+          Number of guests:
+          <input 
+            name='numberOfGuests'
+            type="number"
+            checked={this.state.numberOfGuests}
+            onChange={this.handleInputChange} />
+        </label>
+      </form>
+    )
+  }
+}
+
+const root7 = ReactDOM.createRoot(document.getElementById('root'));
+root7.render(<Reservation />);
+
 class Button1 extends React.Component {
   constructor(props) {
     super(props);
@@ -733,6 +782,7 @@ import React from 'react';
 
 // BEGIN (write your solution here)
 import Card from './src/Card.jsx';
+import { concat } from 'lodash';
 
 const root = ReactDom.createRoot(document.getEleventById('container'));
 
