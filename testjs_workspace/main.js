@@ -10,6 +10,37 @@
  * приложений
  */
 
+ let courses = [
+  { name: "Courses in England", prices: [0, 100] }, 
+  { name: "Courses in Germany", prices: [500, null] }, 
+  { name: "Courses in Italy", prices: [100, 200] }, 
+  { name: "Courses in Russia", prices: [null, 400] },
+  { name: "Courses in China", prices: [50, 250] },
+  { name: "Courses in USA", prices: [200, null] },
+  { name: "Courses in Kazakhstan", prices: [56, 324] },
+  { name: "Courses in France", prices: [null, null] },
+];
+
+const binarySearch5 = (coll, item) => {
+  let low = 0,
+      max = coll.length - 1;
+
+  while (low <= max) {
+    let mid = low + max;
+    let guess = coll[mid];
+
+    if (guess === item) {
+      return mid;
+    } else if (guess > item) {
+      max = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return null;
+}
+
 const testAlg1 = (binaryVector) => {
   let current = 0,
       best = 0;
@@ -156,9 +187,9 @@ const binarySearch4 = (coll, item) => {
 
 const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
 
-const testBin = binarySearch4(myList.sort(), 5);
+const testBin = binarySearch5(myList.sort(), 5);
 
-// console.log(myList.sort(), '  ', testBin);
+console.log(myList.sort(), '  ', testBin);
 
 const objecCreate4 = (arg) => {
   if (!arg) {
