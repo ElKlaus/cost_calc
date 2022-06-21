@@ -1,4 +1,7 @@
 // import { isEmpty, reverse, tail, deepClone } from "lodash";
+
+const { isEmpty } = require("lodash");
+
 /**
  * queueMicrotask
  * аппаратный
@@ -9,8 +12,16 @@
  * представлений
  * приложений
  */
+const reduce1 = (coll, func, acc) => {
+  if (isEmpty(coll)) {
+    return acc;
+  }
 
- let courses = [
+  return reduce1(tail(coll), func, func(head(coll), acc));
+}
+
+
+let courses = [
   { name: "Courses in England", prices: [0, 100] }, 
   { name: "Courses in Germany", prices: [500, null] }, 
   { name: "Courses in Italy", prices: [100, 200] }, 
