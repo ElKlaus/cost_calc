@@ -1,6 +1,6 @@
-const searchInput = document.getElementById('search');
+const searchInput = document.getElementById('search_from');
 const rows = document.querySelectorAll('tbody tr');
-
+const priceCells = document.querySelectorAll("#table_body > tr > td:nth-child(2)");
 const courses = [
   { name: "Courses in England", prices: [0, 100] }, 
   { name: "Courses in Germany", prices: [500, null] }, 
@@ -13,25 +13,39 @@ const courses = [
 ];
 
 const loadTable = (courses) => {
-  const tableBody = courses.reduce(());
-
-  for (const course of data) {
-    tableBody += `<tr>
+  const tableBody = courses.reduce((acc, item) => {
+    const row = acc + `<tr>
         <td>${item.name}</td>
         <td>${item.prices}</td>
-      </tr>`
-  }
-  
+      </tr>`;
+
+    return row;
+  }, '');
 
   document.getElementById('table_body').innerHTML = tableBody;
-}
+};
+
+// window.onload = () => {
+//   loadTable(courses);
+// };
 
 searchInput.addEventListener('keyup', function(event) {
-  const q = event.target.value;
-  
+  const target = event.target;
+  const from = target.value;
+
   rows.forEach(row => {
-    row.textContent.toLowerCase().includes(q)
+    const price = row.querySelectorAll("td:nth-child(2)")[0].innerHTML;
+
+    console.log(typeof from, typeof price);
+
+    // row.textContent.toLowerCase().includes(q)
+    Number(price) >= Number(from)
     ? row.style.display = 'table-row'
     : (row.style.display = 'none');
   })
 });
+
+
+
+
+// console.log(priceCells);
