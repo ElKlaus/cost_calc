@@ -1,6 +1,10 @@
-const searchInput = document.getElementById('search_from');
+const filterFrom = document.getElementById('search_from');
+const filterTo = document.getElementById('search_to');
 const rows = document.querySelectorAll('tbody tr');
-const priceCells = document.querySelectorAll("#table_body > tr > td:nth-child(2)");
+const priceCells = document.querySelectorAll("#table_body > tr");
+// const priceCells = document.querySelectorAll("#table_body > tr > td:nth-child(3)");
+
+/*
 const courses = [
   { name: "Courses in England", prices: [0, 100] }, 
   { name: "Courses in Germany", prices: [500, null] }, 
@@ -12,40 +16,47 @@ const courses = [
   { name: "Courses in France", prices: [null, null] },
 ];
 
-const loadTable = (courses) => {
-  const tableBody = courses.reduce((acc, item) => {
-    const row = acc + `<tr>
-        <td>${item.name}</td>
-        <td>${item.prices}</td>
-      </tr>`;
+priceCells.forEach((item) => {
+  const ceilFrom = item.querySelectorAll("td:nth-child(2)");
+  const ceilTo = item.querySelectorAll("td:nth-child(3)");
 
-    return row;
-  }, '');
 
-  document.getElementById('table_body').innerHTML = tableBody;
-};
+  const values = Object.values(ceilFrom);
+  
+  console.log(typeof values[0]);
+})
+*/
 
-// window.onload = () => {
-//   loadTable(courses);
-// };
 
-searchInput.addEventListener('keyup', function(event) {
+filterFrom.addEventListener('keyup', function(event) {
   const target = event.target;
-  const from = target.value;
+  const currentFrom = target.value;
+  const currentTo = filterTo.value ? filterTo.value : Infinity;
+
+  console.log(currentFrom, currentTo);
 
   rows.forEach(row => {
     const price = row.querySelectorAll("td:nth-child(2)")[0].innerHTML;
 
-    console.log(typeof from, typeof price);
-
-    // row.textContent.toLowerCase().includes(q)
-    Number(price) >= Number(from)
+    Number(price) >= Number(currentFrom) && Number(price) <= Number(currentTo)
     ? row.style.display = 'table-row'
     : (row.style.display = 'none');
   })
 });
 
 
+filterTo.addEventListener('keyup', function(event) {
+  const target = event.target;
+  const currentFrom = filterFrom.value ? filterFrom.value : 0;
+  const currentTo = target.value ? target.value : Infinity;
 
+  console.log(currentFrom, currentTo);
 
-// console.log(priceCells);
+  rows.forEach(row => {
+    const price = row.querySelectorAll("td:nth-child(3)")[0].innerHTML;
+
+    Number(price) >= Number(currentFrom) && Number(price) <= Number(currentTo)
+    ? row.style.display = 'table-row'
+    : (row.style.display = 'none');
+  })
+});

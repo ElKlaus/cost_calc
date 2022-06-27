@@ -1,6 +1,6 @@
 // import { isEmpty, reverse, tail, deepClone } from "lodash";
 
-const { isEmpty } = require("lodash");
+// const { isEmpty } = require("lodash");
 
 /**
  * queueMicrotask
@@ -12,6 +12,42 @@ const { isEmpty } = require("lodash");
  * представлений
  * приложений
  */
+const getValue6 = (data, keys) => {
+  let current = data;
+
+  for ( const key of keys) {
+    const isExist = Object.prototype.hasOwnProperty.call(current, key);
+
+    if (!isExist) {
+      return null;
+    } else {
+      current = data[key];
+    }
+  }
+
+  return current;
+}
+
+const carsObj2 = {
+  model: 'Chevrolet',
+  class: 'Pony car',
+  layout: 'FR layout',
+  platform: {
+    f_body: {
+      years: '1967-2002' 
+    },
+    zeta_platform: '2010-2015',
+    alpha_platform: '2016-present',
+  },
+  model_years: {
+    last: '1967-2002',
+    present: '2010',
+  },
+  hasWings: false,
+};
+
+console.log(getValue6(carsObj2, ['platform', 'f_body', 'years']));
+
 const reduce1 = (coll, func, acc) => {
   if (isEmpty(coll)) {
     return acc;
@@ -68,26 +104,6 @@ const testAlg1 = (binaryVector) => {
   return best;
 };
 
-console.log(testAlg1([1,1,1,1,1,1]));
-
-const carsObj2 = {
-  model: 'Chevrolet',
-  class: 'Pony car',
-  layout: 'FR layout',
-  platform: {
-    f_body: {
-      years: '1967-2002' 
-    },
-    zeta_platform: '2010-2015',
-    alpha_platform: '2016-present',
-  },
-  model_years: {
-    last: '1967-2002',
-    present: '2010',
-  },
-  hasWings: false,
-};
-
 const cloneDeep2 = (data) => {
   const entries = Object.entries(data);
   const result = {};
@@ -102,11 +118,6 @@ const cloneDeep2 = (data) => {
 
   return result;
 };
-
-const someTest = cloneDeep2(carsObj2);
-
-// console.log(someTest)
-
 
 const quotes1 = (elements) => {
   const filtered = filter(element => is('blockquote', element), elements);
