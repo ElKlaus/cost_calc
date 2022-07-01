@@ -12,6 +12,21 @@
  * представлений
  * приложений
  */
+
+const filter3 = (data, func) => {
+  const iter = (coll, acc) => {
+    if (isEmpty(coll)) {
+      return acc;
+    }
+
+    const newAcc = func(head(coll)) ? acc.push(head(coll)) : acc;
+
+    return iter(tail(coll), newAcc);
+  }
+
+  return iter(data, []);
+}
+
 const getValue6 = (data, keys) => {
   let current = data;
 
@@ -46,7 +61,7 @@ const carsObj2 = {
   hasWings: false,
 };
 
-console.log(getValue6(carsObj2, ['platform', 'f_body', 'years']));
+// console.log(getValue6(carsObj2, ['platform', 'f_body', 'years']));
 
 const reduce1 = (coll, func, acc) => {
   if (isEmpty(coll)) {
@@ -134,7 +149,6 @@ const customCunst1 = function(name, breed, weight) {
 
 const newDog = new customCunst1('Sharick', 'Mixed', 123);
 
-// console.log(newDog)
 
 const objecCreate5 = (arg) => {
   if (!arg) {
@@ -211,7 +225,7 @@ const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 
 
 const testBin = binarySearch5(myList.sort(), 5);
 
-console.log(myList.sort(), '  ', testBin);
+// console.log(myList.sort(), '  ', testBin);
 
 const objecCreate4 = (arg) => {
   if (!arg) {
