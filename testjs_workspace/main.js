@@ -13,6 +13,9 @@
  * приложений
  */
 
+
+
+
 const filter3 = (data, func) => {
   const iter = (coll, acc) => {
     if (isEmpty(coll)) {
