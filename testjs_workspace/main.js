@@ -13,7 +13,13 @@
  * приложений
  */
 
+const getDigit = (number, n) => {
+  // console.log(number % Math.pow(10, n));
 
+  return (number % Math.pow(10, n)) / Math.pow(10, n-1);
+};
+
+console.log(getDigit(984, 3));
 
 
 const filter3 = (data, func) => {
