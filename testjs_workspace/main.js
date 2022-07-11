@@ -13,13 +13,71 @@
  * приложений
  */
 
-const getDigit = (number, n) => {
-  // console.log(number % Math.pow(10, n));
+const getValue7 = (data, keys) => {
+  let current = data;
 
+  for (const key of keys) {
+    const isVal = Object.prototype.hasOwnProperty.call(current, key);
+
+    current = isVal ? current[key] : null;
+  }
+
+  return current;
+};
+
+const carsObj2 = {
+  model: 'Chevrolet',
+  class: 'Pony car',
+  layout: 'FR layout',
+  platform: {
+    f_body: {
+      years: '1967-2002' 
+    },
+    zeta_platform: '2010-2015',
+    alpha_platform: '2016-present',
+  },
+  model_years: {
+    last: '1967-2002',
+    present: '2010',
+  },
+  hasWings: false,
+};
+
+console.log(getValue7(carsObj2, ['platform', 'f_body', 'years']));
+
+const binarySearch6 = (list, item) => {
+  let low = 0;
+  let high = list.length - 1;
+
+  while (low <= high) {
+    let mid = low + high;
+    let guess = list[mid];
+
+    if(guess === item) {
+      return mid;
+    }
+
+    if(guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return null;
+}
+
+const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
+
+const testBin = binarySearch6(myList.sort(), 5);
+
+// console.log(myList.sort(), '  ', testBin);
+
+const getDigit = (number, n) => {
   return (number % Math.pow(10, n)) / Math.pow(10, n-1);
 };
 
-console.log(getDigit(984, 3));
+// console.log(getDigit(984, 3));
 
 
 const filter3 = (data, func) => {
@@ -51,26 +109,6 @@ const getValue6 = (data, keys) => {
 
   return current;
 }
-
-const carsObj2 = {
-  model: 'Chevrolet',
-  class: 'Pony car',
-  layout: 'FR layout',
-  platform: {
-    f_body: {
-      years: '1967-2002' 
-    },
-    zeta_platform: '2010-2015',
-    alpha_platform: '2016-present',
-  },
-  model_years: {
-    last: '1967-2002',
-    present: '2010',
-  },
-  hasWings: false,
-};
-
-// console.log(getValue6(carsObj2, ['platform', 'f_body', 'years']));
 
 const reduce1 = (coll, func, acc) => {
   if (isEmpty(coll)) {
@@ -229,12 +267,6 @@ const binarySearch4 = (coll, item) => {
 
   return null;
 }
-
-const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
-
-const testBin = binarySearch5(myList.sort(), 5);
-
-// console.log(myList.sort(), '  ', testBin);
 
 const objecCreate4 = (arg) => {
   if (!arg) {
