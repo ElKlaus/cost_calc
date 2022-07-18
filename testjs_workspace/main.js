@@ -8,6 +8,49 @@
  * приложений
  * 
  */
+
+ const changeOwner1 = (tree, owner) =>{
+  const name = getName(tree);
+  const newMeta = _.cloneDeep(getMeta(tree));
+
+  newMeta.owner = owner;
+
+  if(isFile(tree)) {
+    return mkFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+  const newChildren = children.map((child) => changeOwner(child, owner));
+
+  return mkdir(name, newMeta, newChildren);
+};
+
+
+const debounce = (func, ms) => {
+  let isCooldown = false;
+
+  return function() {
+    if (isCooldown) return;
+
+    f.aplly(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => isCooldown = false, ms);
+  };
+}
+
+ const signCount = function(array) {
+  let result = 0;
+  for (let index = 0; index < array.length; ++index) {
+    if (Math.sign(array[index]) !==1 && array[index] !== 0) {
+      ++result;
+    }
+  }
+
+  return result;
+};
+
 let step = (x) => Math.pow(2, x);
 
 const decorator = (func) => {

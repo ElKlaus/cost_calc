@@ -1,5 +1,9 @@
 const myList = [1, 3, 5, 7, 9, 56, 544, 8, 91, 77, 32, 24, 77, 55, 46, 63, 866, 17, 27];
 
+const intNumbers = [-1, 2, -3, 4, -5, 6, -7, 0, -8];
+
+
+
 let courses = [
   { name: "Courses in England", prices: [0, 100] }, 
   { name: "Courses in Germany", prices: [500, null] }, 
