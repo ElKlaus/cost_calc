@@ -9,7 +9,19 @@
  * 
  */
 
- const changeOwner1 = (tree, owner) =>{
+const objectCreate = (arg) => {
+  if (!arg) {
+    return {}
+  }
+
+  const func = function() {};
+
+  func.prototype = arg;
+
+  return new func;
+};
+
+const changeOwner1 = (tree, owner) =>{
   const name = getName(tree);
   const newMeta = _.cloneDeep(getMeta(tree));
 
