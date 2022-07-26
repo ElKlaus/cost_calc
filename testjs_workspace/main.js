@@ -1,3 +1,5 @@
+const { reduce } = require("lodash");
+
 /**
  * физический
  * канальный
@@ -8,6 +10,13 @@
  * приложений
  * 
  */
+const emptyTagsCount = (tag, coll) => {
+  const predicate = element => is(tag, element) && value(element) === '';
+  const func = (element, acc) => (predicate(element) ? acc + 1 : acc);
+
+  return reduce(func, 0, elements);
+};
+
 let worker = {
   slow(min, max) {
     alert(`Called with ${min}, ${max}`);
