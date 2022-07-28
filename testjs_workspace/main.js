@@ -1,5 +1,3 @@
-const { reduce } = require("lodash");
-
 /**
  * физический
  * канальный
@@ -10,6 +8,44 @@ const { reduce } = require("lodash");
  * приложений
  * 
  */
+
+const objectCreate1 = (arg) => {
+  if (!arg) {
+    return {};
+  }
+
+  function func() {};
+
+  func.prototype = arg;
+
+  return new func;
+}
+
+const getValue = (data, keys) => {
+  let current = data;
+
+  for (key of keys) {
+    const isVal = Object.prototype.hasOwnProperty.call(current, key);
+
+    if (!isVal) {
+      return null;
+    }
+    
+    current = current[key];
+  }
+
+  return current;
+}
+
+
+// console.log(getValue(carsObj, ['platform', 'f_body', 'years']));
+
+const loginInput = document.getElementById("login");
+
+const clicker = (e) => alert(this.e);
+
+// console.log(loginInput);
+
 const emptyTagsCount = (tag, coll) => {
   const predicate = element => is(tag, element) && value(element) === '';
   const func = (element, acc) => (predicate(element) ? acc + 1 : acc);
@@ -49,7 +85,7 @@ function hash(args) {
 
 worker.slow = cashingDecorator(worker.slow, hash);
 
-alert( worker.slow(3, 5));
+// alert( worker.slow(3, 5));
 
 
 const objectCreate = (arg) => {
