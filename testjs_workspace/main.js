@@ -9,6 +9,38 @@
  * 
  */
 
+const { isEmpty, reverse, head } = require("lodash");
+
+const filter = (coll, func) => {
+
+  const iter = (items, acc) => {
+    if(isEmpty(items)) return reverse(acc);
+
+    const newAcc = func(head(items)) ? acc.push(head(items)) : acc;
+
+    return iter(tail(items, newAcc));
+  }
+  
+  return iter(coll, []);
+};
+
+
+const changeOwner2 = (tree, owner) => {
+  const name = getName(tree);
+  const newMeta = _.cloneDeep(getMeta(tree));
+  
+  newMeta.owner = owner;
+
+  if(isFile(tree)) {
+    return mkFile(name, newMeta);
+  }
+
+  const children = getChildren(tree);
+  const newChildren = children.map(child => changeOwner2(child, owner));
+
+  return mkDir(name, newChildren, newMeta);
+}
+
 const objectCreate1 = (arg) => {
   if (!arg) {
     return {};
