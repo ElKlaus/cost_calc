@@ -9,219 +9,81 @@
  * 
  */
 
-const { isEmpty, reverse, head } = require("lodash");
-
-const filter = (coll, func) => {
-
-  const iter = (items, acc) => {
-    if(isEmpty(items)) return reverse(acc);
-
-    const newAcc = func(head(items)) ? acc.push(head(items)) : acc;
-
-    return iter(tail(items, newAcc));
-  }
-  
-  return iter(coll, []);
-};
-
-
-const changeOwner2 = (tree, owner) => {
-  const name = getName(tree);
-  const newMeta = _.cloneDeep(getMeta(tree));
-  
-  newMeta.owner = owner;
-
-  if(isFile(tree)) {
-    return mkFile(name, newMeta);
-  }
-
-  const children = getChildren(tree);
-  const newChildren = children.map(child => changeOwner2(child, owner));
-
-  return mkDir(name, newChildren, newMeta);
+function work(a, b) {
+  alert(a + b);
 }
 
-const objectCreate1 = (arg) => {
-  if (!arg) {
-    return {};
+function spy(func) {
+  function wrapper(...args) {
+    wrapper.calls.push(args);
+
+    return func.apply(this, arguments);
   }
 
-  function func() {};
+  wrapper.calls = [];
 
-  func.prototype = arg;
-
-  return new func;
+  return wrapper;
 }
 
-const getValue = (data, keys) => {
-  let current = data;
+work = spy(work);
 
-  for (key of keys) {
-    const isVal = Object.prototype.hasOwnProperty.call(current, key);
+work(1, 2);
+work(4, 15);
 
-    if (!isVal) {
-      return null;
-    }
-    
-    current = current[key];
-  }
+for (let args of work.calls) {
+  console.log(args.join());
 
-  return current;
 }
 
 
-// console.log(getValue(carsObj, ['platform', 'f_body', 'years']));
+class CoffeeMachine {
+  _waterAmount = 0;
 
-const loginInput = document.getElementById("login");
+  set waterAmount(value) {
+    if (value < 0) throw new Error("Отрицательное количество воды");
 
-const clicker = (e) => alert(this.e);
-
-// console.log(loginInput);
-
-const emptyTagsCount = (tag, coll) => {
-  const predicate = element => is(tag, element) && value(element) === '';
-  const func = (element, acc) => (predicate(element) ? acc + 1 : acc);
-
-  return reduce(func, 0, elements);
-};
-
-let worker = {
-  slow(min, max) {
-    alert(`Called with ${min}, ${max}`);
-
-    return min + max;
+    this._waterAmount = value;
   }
-};
 
-function cashingDecorator(func, hash) {
-  let cashe = new Map();
+  get waterAmount() {
+    return this._waterAmount;
+  }
 
-  return function() {
-    let key = hash(arguments);
-
-    if (cashe.has(key)) {
-      return cashe.get(key);
-    }
-
-    let result = func.call(this, ...arguments);
-
-    cashe.set(key, result);
-
-    return result;
-  };
+  constructor(power) {
+    this._power = power;
+  }
 }
 
-function hash(args) {
-  return args[0] + ',' + args[1];
+let coffeeMachine = new CoffeeMachine(100);
+
+// coffeeMachine.waterAmount() = -200;
+
+function testConst() {};
+
+// console.log(new testConst);
+
+function slow(x) {
+  alert(`Called with ${x}`);
+
+  return x;
 }
 
-worker.slow = cashingDecorator(worker.slow, hash);
-
-// alert( worker.slow(3, 5));
-
-
-const objectCreate = (arg) => {
-  if (!arg) {
-    return {}
-  }
-
-  const func = function() {};
-
-  func.prototype = arg;
-
-  return new func;
-};
-
-const changeOwner1 = (tree, owner) =>{
-  const name = getName(tree);
-  const newMeta = _.cloneDeep(getMeta(tree));
-
-  newMeta.owner = owner;
-
-  if(isFile(tree)) {
-    return mkFile(name, newMeta);
-  }
-
-  const children = getChildren(tree);
-  const newChildren = children.map((child) => changeOwner(child, owner));
-
-  return mkdir(name, newMeta, newChildren);
-};
-
-
-const debounce = (func, ms) => {
-  let isCooldown = false;
-
-  return function() {
-    if (isCooldown) return;
-
-    f.aplly(this, arguments);
-
-    isCooldown = true;
-
-    setTimeout(() => isCooldown = false, ms);
-  };
-}
-
- const signCount = function(array) {
-  let result = 0;
-  for (let index = 0; index < array.length; ++index) {
-    if (Math.sign(array[index]) !==1 && array[index] !== 0) {
-      ++result;
-    }
-  }
-
-  return result;
-};
-
-let step = (x) => Math.pow(2, x);
-
-const decorator = (func) => {
-  let cashe = new Map;
+function cachingDecorator(func) {
+  let cache = new Map();
 
   return function(x) {
-    if (cashe.has(x)) {
-      return cashe.get(x);
+    if (cache.has(x)) {
+      return cache.get(x);
     }
 
     let result = func(x);
 
-    cashe.set(x, result);
+    cache.set(x, result);
+
     return result;
   }
 }
 
-step = decorator(step);
+slow = cachingDecorator(slow);
 
-console.log(step(3));
-
-const changeOwner = (tree, owner) => {
-  const name = getName(tree);
-  const newMeta = _.cloneDeep(getMeta(tree));
-
-  newMeta.owner = owner;
-
-  if (isFile(tree)) {
-    return mkfile(name, newMeta);
-  }
-
-  const children = getChildren(tree);
-
-  const newChildren = children.map((child) => changeOwner(child, owner));
-  const newTree = mkdir(name, newChildren, newMeta);
-
-  return newTree;
-}
-
-const cloneDeep = (data) => {
-  const entries = Object.entries(data);
-  const resData = {};
-
-  for (const [key, value] of entries) {
-    resData[key] = typeof value === 'object' ? cloneDeep(value) : value;
-  }
-
-  console.log(resData);
-
-  return resData;
-};
+// slow(1);

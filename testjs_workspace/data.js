@@ -56,4 +56,3 @@ const carsObj = {
 };
 
 const keysForTest = ['platform', 'f_body', 'years'];
-
