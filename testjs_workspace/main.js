@@ -1,42 +1,15 @@
-/**
- * аппаратный
- * канальный
- * сетевой
- * транспортный
- * сессионный
- * представлений
- * приложений
- */
+const myList1 = [24, 77, 55, 46, 63, 866, 17, 27];
 
-function slow(x) {
-  alert (`Called with ${x}`);
-
-  return x;
-}
-
-function cachingDecorator(func) {
-  let cache = new Map();
-
-  return function(x) {
-    console.log(x);
-
-    if (cache.has(x)) {
-      return cache.get(x);
-    }
-
-    let result = func(x);
-
-    cache.set(x, result);
-
-    return result;
+function compareNumbers(num1, num2) {
+  if (num1 > num2) {
+    return 1;
+  } else if (num1 === num2) {
+    return 0;
+  } else {
+    return -1;
   }
 }
 
-slow = cachingDecorator(slow);
+myList1.sort(compareNumbers);
 
-
-alert( slow(1) );
-alert( `Again: ${slow(1)}` );
-
-// alert( slow(2) );
-// alert( `Again: ${slow(2)}` );
+alert(myList1);
