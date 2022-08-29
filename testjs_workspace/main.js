@@ -1,15 +1,9 @@
-const myList1 = [24, 77, 55, 46, 63, 866, 17, 27];
-
-function compareNumbers(num1, num2) {
-  if (num1 > num2) {
-    return 1;
-  } else if (num1 === num2) {
-    return 0;
-  } else {
-    return -1;
+class Rabbit extends Object {
+  constructor(name) {
+    this.name = name;
   }
 }
 
-myList1.sort(compareNumbers);
+let rabbit = new Rabbit("Bunny");
 
-alert(myList1);
+alert(  rabbit.hasOwnProperty('name') );
