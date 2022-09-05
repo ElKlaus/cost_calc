@@ -1,9 +1,22 @@
-class Rabbit extends Object {
-  constructor(name) {
-    this.name = name;
-  }
+// конструктор
+function Dog (name, breed, weight) {
+  this.name = name;
+  this.breed = breed;
+  this.weight = weight;
 }
 
-let rabbit = new Rabbit("Bunny");
+// созданный на основе конструктора объект.
+const fido = new Dog("Fido", "Mixed", 38);
 
-alert(  rabbit.hasOwnProperty('name') );
+const func = function(arg = 333) {
+  // const test = 'some text'
+  console.log(arguments);
+}
+
+const wrapper = function() {
+  return func(arguments);
+}
+
+const wrapper1 = function() {
+  return func.apply(this, arguments);
+}
