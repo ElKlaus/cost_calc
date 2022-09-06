@@ -1,7 +1,30 @@
+// const { isEmpty } = require("lodash");
+
+const { entries } = require("lodash");
+
+// const { reduce } = require("lodash");
+
+const cloneDeep = (data) => {
+  const entries = Array.prototype.entries(data);
+  const result = {};
+
+  for (const [key, value] of entries) {
+    result[key] = typeof value === "object" ? cloneDeep(value) : value;
+  }
+
+  return result;
+};
+
+const emptyTagsCount = (coll, tagName) => {
+  const isTag = (tag) => getName(tag) === tagName && isEmpty(tag);
+  const func = (element, acc) => (isTag(element) ? acc + 1: acc);
+
+  return reduce(func, 0, coll);
+}
 
 let worker = {
   someMethod() {
-    return 1;
+    return 10;
   },
 
   slow(x) {
@@ -15,7 +38,7 @@ function cachingDecorator(func) {
   let cashe = new Map;
 
   return function(x) {
-    alert(cashe);
+    console.log(cashe);
 
     if (cashe.has(x)) {
       return cashe.get(x);
@@ -34,8 +57,12 @@ worker.slow = cachingDecorator(worker.slow);
 
 // console.log(worker.slow);
 
-alert( worker.slow(2) );
-alert( worker.slow(2) );
+// alert( worker.slow(2) );
+// alert( worker.slow(2) );
+// alert( worker.slow(12) );
+// alert( worker.slow(12) );
+// alert( worker.slow(22) );
+// alert( worker.slow(22) );
 
 // console.log(worker.slow);
 
