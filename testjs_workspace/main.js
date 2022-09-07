@@ -1,8 +1,4 @@
-// const { isEmpty } = require("lodash");
-
-const { entries } = require("lodash");
-
-// const { reduce } = require("lodash");
+const assigned = Object.assign(showDog, carsObj, numbersObj);
 
 const cloneDeep = (data) => {
   const entries = Array.prototype.entries(data);
