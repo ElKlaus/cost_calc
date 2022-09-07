@@ -1,3 +1,43 @@
+function setVal(argX) {
+  return argX;
+}
+
+
+function testThrowArg(func) {
+  console.log(66666666);
+
+  return function(X) {
+    console.log(999999999);
+    console.log(func(X));
+
+    return X;
+  }
+}
+
+const testCall = testThrowArg(setVal);
+
+class CoffeeMachine {
+  #waterAmount = 0;
+
+  set waterAmount(value) {
+    if (value < 0) throw new Error("Отрицательное число");
+
+    this.#waterAmount = value;
+  }
+
+  get waterAmount() {
+    return this.#waterAmount + 50;
+  }
+
+  constructor(power) {
+    this._power = power;
+  }
+}
+
+let CoffeeMachines = new CoffeeMachine(100);
+
+CoffeeMachines.waterAmount = 66;
+
 const assigned = Object.assign(showDog, carsObj, numbersObj);
 
 const cloneDeep = (data) => {
