@@ -4,6 +4,13 @@ const intNumbers = [-1, 2, -3, 4, -5, 6, -7, 0, -8];
 
 const myList1 = [24, 77, 55, 46, 63, 866, 17, 27];
 
+let anagrammArr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+let names = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+
 let courses = [
   { name: "Courses in England", prices: [0, 100] }, 
   { name: "Courses in Germany", prices: [500, null] }, 
