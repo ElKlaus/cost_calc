@@ -1,25 +1,23 @@
-function spy(func) {
+function debounce(f, ms) {
+  let isCooldown = false;
 
-  function wrapper(...args) {
-    wrapper.calls.push(args);
+  return function() {
+    if (isCooldown) return;
 
-    return func.apply(this, arguments);
+    f.apply(this, arguments);
+
+    isCooldown = true;
+
+    setTimeout(() => isCooldown = false, ms);
   }
-
-  wrapper.calls = [];
-
-  return wrapper;
-};
-
-function work(a, b) {
-  alert( a + b);
 }
 
-work = spy(work);
+let f = debounce(alert, 1000);
 
-work(1, 2);
-work(4, 5);
+f(1);
 
-for (let args of work.calls) {
-  alert( 'call: ' + args.join() );
-}
+f(2);
+
+setTimeout(() => f(3), 100);
+setTimeout(() => f(4), 1100);
+setTimeout(() => f(5), 1500);
