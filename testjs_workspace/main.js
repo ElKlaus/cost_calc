@@ -1,23 +1,56 @@
-function debounce(f, ms) {
-  let isCooldown = false;
+const binary_search = (list, item) => {
+  let low = 0;
+  let high = list.length - 1;
 
-  return function() {
-    if (isCooldown) return;
+  while (low <= high) {
+    let mid = low + high;
+    let guess = list[mid];
 
-    f.apply(this, arguments);
+    if (guess == item) {
+      return mid;
+    } else if (guess > item) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
 
-    isCooldown = true;
+  return null;
+}
 
-    setTimeout(() => isCooldown = false, ms);
+console.log(binary_search(myList, 8))
+
+let worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    console.log("Called with " + x);
+
+    return x * this.someMethod();
   }
 }
 
-let f = debounce(alert, 1000);
+function cachingDecorator(func) {
+  let cache = new Map();
 
-f(1);
+  return function(x) {
+    if (cache.has(x)) {
+      console.log("Hello from cache " + x);
 
-f(2);
+      return cache.get(x);
+    }
 
-setTimeout(() => f(3), 100);
-setTimeout(() => f(4), 1100);
-setTimeout(() => f(5), 1500);
+    let result = func.call(this, x);
+
+    cache.set(x, result);
+
+    return result;
+  }
+}
+
+worker.slow = cachingDecorator(worker.slow);
+
+// console.log(worker.slow(2));
+// console.log(worker.slow(2));
