@@ -1,3 +1,33 @@
+// queueMicrotask
+// setInterval, setTimeout
+// вызывается из объекта
+
+// const { isEmpty } = require("lodash");
+
+// 
+const filter = (coll, func) => {
+  const iter = (items, acc) => {
+    if (isEmpty(items)) {
+      return acc.reverse();
+    }
+
+    const head = head(items);
+    const newAcc = func(head) ? cons(head, acc) : acc;
+
+    return iter(tail(items), newAcc);
+  }
+
+  return iter(coll, l());
+}
+
+
+const quotes = (coll) => {
+  const filtered = filter(element => isFinite('blockquote', element), elements);
+  const result = map(value, filtered);
+
+  return result;
+}
+
 const binary_search = (list, item) => {
   let low = 0;
   let high = list.length - 1;
@@ -6,11 +36,15 @@ const binary_search = (list, item) => {
     let mid = low + high;
     let guess = list[mid];
 
-    if (guess == item) {
+    console.log('low: ' + low, 'high: ' + high, 'mid: ' + mid, 'item: ' + guess, 'item: ' + item);
+
+    if (guess === item) {
       return mid;
-    } else if (guess > item) {
+    }
+    
+    if (guess > item) {
       high = mid - 1;
-    } else {
+    } else if (guess < item) {
       low = mid + 1;
     }
   }
@@ -18,7 +52,9 @@ const binary_search = (list, item) => {
   return null;
 }
 
-console.log(binary_search(myList, 8))
+const searched = binary_search(myList, 866);
+
+console.log(searched);
 
 let worker = {
   someMethod() {
