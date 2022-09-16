@@ -4,7 +4,47 @@
 
 // const { isEmpty } = require("lodash");
 
-// 
+const getVal = (data, keys) => {
+  let current = data;
+
+  for (const key of keys) {
+    const hasVal = Object.prototype.hasOwnProperty.call(current, key);
+
+    if(!hasVal) {
+      return null;
+    }
+
+    current = current[key];
+  }
+
+  return current;
+}
+
+const cloneDeep = (data) => {
+  const result = {};
+  const entries = Object.prototype.entries(data);
+
+  for(const [key, value] of entries) {
+    // 
+
+    result[key] = typeof value === "object" ? cloneDeep(value) : value;
+  }
+
+  return result;
+}
+
+const objectCreate = function(arg) {
+  if(!arg) {
+    return {};
+  }
+
+  const func = function() {};
+
+  func.prototype = arg;
+
+  return new func;
+}
+
 const filter = (coll, func) => {
   const iter = (items, acc) => {
     if (isEmpty(items)) {
