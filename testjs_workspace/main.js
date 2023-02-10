@@ -1,132 +1,110 @@
-// queueMicrotask
-// setInterval, setTimeout
-// вызывается из объекта
+/**
+* Написать функцию sostavChisla(massivChisel: number[], chislo: number), 
+  которая бы находила все возможные комбинации чисел из massivChisel, 
+  сумма которых равна chislo. При этом:
+  1) massivChisel содержит, только уникальные положительные числа (> 0)
+  2) в комбинации не должно быть повторений чисел
+  3) все комбинации должны быть уникальными
+  
+  Для проверки работоспособности функции запустить runTests()
+  
+  @param massivChisel: number[]
+  @param chislo: number[]
+  @return Array<Array<number>>
+*/
+function sostavChisla(massivChisel, chislo) {
+	// код писать только внутри данной функции
+	return [[1, 2], [3]];
+}
 
-// const { isEmpty } = require("lodash");
+// console.log(sostavChisla([8, 2, 3, 4, 6, 7, 1], 99));
 
-const getVal = (data, keys) => {
-  let current = data;
-
-  for (const key of keys) {
-    const hasVal = Object.prototype.hasOwnProperty.call(current, key);
-
-    if(!hasVal) {
-      return null;
+function compareNumericArrays(arr1, arr2) {
+  if(arr1.length !== arr2.length) {
+    return false;
+  }
+  
+  arr1 = [...arr1].sort();
+  arr2 = [...arr2].sort();
+  
+  for(let i=0; i<arr1.length; i++) {
+    if(arr1[i] !== arr2[i]) {
+      return false;
     }
-
-    current = current[key];
   }
-
-  return current;
+  
+  return true;
 }
 
-const cloneDeep = (data) => {
-  const result = {};
-  const entries = Object.prototype.entries(data);
-
-  for(const [key, value] of entries) {
-    // 
-
-    result[key] = typeof value === "object" ? cloneDeep(value) : value;
+function compareArraysOfNumericArrays(arr1, arr2) {
+  if(arr1.length !== arr2.length) {
+    return false;
   }
-
-  return result;
-}
-
-const objectCreate = function(arg) {
-  if(!arg) {
-    return {};
-  }
-
-  const func = function() {};
-
-  func.prototype = arg;
-
-  return new func;
-}
-
-const filter = (coll, func) => {
-  const iter = (items, acc) => {
-    if (isEmpty(items)) {
-      return acc.reverse();
+  
+  for(let el1 of arr1) {
+    if(arr2.findIndex(el2 => compareNumericArrays(el1, el2)) < 0) {
+      return false;
     }
-
-    const head = head(items);
-    const newAcc = func(head) ? cons(head, acc) : acc;
-
-    return iter(tail(items), newAcc);
   }
-
-  return iter(coll, l());
+  
+  return true;
 }
 
+runTests();
 
-const quotes = (coll) => {
-  const filtered = filter(element => isFinite('blockquote', element), elements);
-  const result = map(value, filtered);
-
-  return result;
-}
-
-const binary_search = (list, item) => {
-  let low = 0;
-  let high = list.length - 1;
-
-  while (low <= high) {
-    let mid = low + high;
-    let guess = list[mid];
-
-    console.log('low: ' + low, 'high: ' + high, 'mid: ' + mid, 'item: ' + guess, 'item: ' + item);
-
-    if (guess === item) {
-      return mid;
-    }
+function runTests() {
+    const tests = [
+    {
+      chislo: 5, 
+      massivChisel: [8, 2, 3, 4, 6, 7, 1],
+      result: [[2, 3], [4, 1]]
+    },
+    {
+      chislo: 99, 
+      massivChisel: [8, 2, 3, 4, 6, 7, 1],
+      result: []
+    },
+    {
+      chislo: 8, 
+      massivChisel: [1, 2, 3, 4, 5, 6, 7, 8],
+      result: [[1, 3, 4], [1, 2, 5], [3, 5], [2, 6], [1, 7], [8]]
+    },
+    {
+      chislo: 8, 
+      massivChisel: [7, 8, 3, 4, 5, 6, 1, 2],
+      result: [[1, 3, 4], [1, 2, 5], [3, 5], [2, 6], [1, 7], [8]]
+    },
+    {
+      chislo: 15, 
+      massivChisel: [7, 8, 3, 4, 5, 6, 1, 2],
+      result: [[1, 2, 3, 4, 5], [2, 3, 4, 6], [1, 3, 5, 6], [4, 5, 6], [1, 3, 4, 7], [1, 2, 5, 7], [3, 5, 7], [2, 6, 7], [1, 2, 4, 8], [3, 4, 8], [2, 5, 8], [1, 6, 8], [7, 8]]
+    },  
     
-    if (guess > item) {
-      high = mid - 1;
-    } else if (guess < item) {
-      low = mid + 1;
-    }
+  ];
+
+  let errors = 0;
+  for(const test of tests) {
+    let result;
+    try{
+      result = sostavChisla(test.massivChisel, test.chislo);
+      
+      if(!compareArraysOfNumericArrays(
+          result, 
+          test.result)
+      ) {
+        errors++;
+        console.log('--------------------------------------------')
+        console.log("failed for test", test, "Got result", result);
+      }
+    } catch(e) {
+      errors++;
+      console.log("failed for", test, 'exception', e.message);
+    }    
   }
 
-  return null;
-}
-
-const searched = binary_search(myList, 866);
-
-console.log(searched);
-
-let worker = {
-  someMethod() {
-    return 1;
-  },
-
-  slow(x) {
-    console.log("Called with " + x);
-
-    return x * this.someMethod();
+  if(errors === 0) {
+    console.log('checkStringForBracects test successfuly completed');
+  } else {
+    console.log(`checkStringForBracects test failed with ${errors} errors`);
   }
 }
-
-function cachingDecorator(func) {
-  let cache = new Map();
-
-  return function(x) {
-    if (cache.has(x)) {
-      console.log("Hello from cache " + x);
-
-      return cache.get(x);
-    }
-
-    let result = func.call(this, x);
-
-    cache.set(x, result);
-
-    return result;
-  }
-}
-
-worker.slow = cachingDecorator(worker.slow);
-
-// console.log(worker.slow(2));
-// console.log(worker.slow(2));
